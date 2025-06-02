@@ -12,6 +12,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'ixru/nvim-markdown'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  " Neorg Section
+  Plug 'nvim-neorg/neorg'
+  Plug 'nvim-neorg/lua-utils.nvim'
+  Plug 'pysan3/pathlib.nvim'
+  Plug 'nvim-neotest/nvim-nio'
+  Plug 'MunifTanjim/nui.nvim'
+  "
   Plug 'norcalli/nvim-colorizer.lua' 
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'jiangmiao/auto-pairs'

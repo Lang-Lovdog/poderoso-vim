@@ -48,6 +48,7 @@ lua require('config/jsonfly')
 lua require('config/surround')
 "lua require('config/rainbowcsv_conf')
 lua require('config/lovdog_configs')
+lua require('config/neworg')
 "----- SNIP -----
 " Octave syntax
 augroup filetypedetect
