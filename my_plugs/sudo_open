@@ -1,0 +1,28 @@
+lua << EOF
+
+vim.g.sudo_files = {}
+
+vim.api.nvim_create_user_command(
+  'SudoOpen',
+  function(opts)
+    -- Get only the argument file name, not the path
+    archivo = vim.fn.fnamemodify(opts.args, ':t')
+    -- Get file original user and group 
+    local usuario=vim.api.nvim_exec(":!ls -l " .. "%" .. " | awk '{print $3}'", false)
+    local elgrupo=vim.api.nvim_exec(":!ls -l " .. "%" .. " | awk '{print $4}'", false)
+    -- Save values into a dictionary
+    vim.g.sudo_files = { [archivo .. "usuario"]= usuario, [archivo .. "elgrupo"]= elgrupo }
+    -- Append the new path /tmp/filename
+    archivo = '/tmp/' .. archivo
+    vim.cmd('!sudo cp ' .. opts.args .. ' /tmp/',false)
+    vim.cmd('!chown lang_lovdog:users ' .. archivo,false)
+    vim.cmd('e /tmp/' .. archivo,false)
+  end,
+  { nargs = 1 }
+)
+-- vim.api.nvim_cereate_user_command(
+--   'SudoWrite',
+--   function(opts)
+--     
+-- )
+EOF

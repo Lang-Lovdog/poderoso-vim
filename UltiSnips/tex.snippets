@@ -1,0 +1,207 @@
+snippet ArticleEsXe "LaTeX article básico en español"
+\documentclass[10pt]{article}
+\usepackage[vmargin=1in, hmargin=1.2in]{geometry}
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\setmainfont{QTBookmann}
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\usepackage{dirtytalk}
+\setdefaultlanguage[variant=mexican]{spanish}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\author{%
+Brandon Marquez Salazar
+}
+\title{%
+$0
+}
+\begin{document}
+  \maketitle
+\end{document}
+endsnippet
+
+snippet ArticleEsLa "LaTeX article básico en español"
+\documentclass[10pt]{article}
+\usepackage[vmargin=1in, hmargin=1.2in]{geometry}
+\usepackage[utf8]{fontenc}
+\usepackage{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{Bookman}
+\usepackage{graphicx}
+\usepackage{dirtytalk}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\author{%
+Brandon Marquez Salazar
+}
+\title{%
+$0
+}
+\begin{document}
+  \maketitle
+  $1
+\end{document}
+endsnippet
+
+snippet eqalign "Aligned equation environment"
+\begin{equation}
+\begin{aligned}
+$0
+\end{aligned}
+\end{equation}
+endsnippet
+
+snippet eqalign* "Aligned equation environment"
+\begin{equation*}
+\begin{aligned}
+$0
+\end{aligned}
+\end{equation*}
+endsnippet
+
+snippet aligned "Aligned equation environment"
+\begin{aligned}
+$0
+\end{aligned}
+endsnippet
+
+snippet $aligned "Aligned equation environment"
+\$\begin{aligned}
+$0
+\end{aligned}\$
+endsnippet
+
+snippet BeamerEs "LaTeX article básico en español"
+\documentclass[12pt]{beamer}
+\usepackage{fontspec}
+\setmainfont{QTBookmann}
+\usepackage{polyglossia}
+\usepackage{xcolor}
+\usepackage{dirtytalk}
+\usepackage{graphicx}
+\setdefaultlanguage[variant=mexican]{spanish}
+\usepackage{multirow}
+\usetheme{Copenhagen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\definecolor{mypurple}{RGB}{044,040,028}                              %
+%\setbeamercolor*{palette primary}{use=structure,fg=white,bg=mypurple} %
+%\definecolor{mypurple}{RGB}{195,084,023}                              %
+%\setbeamercolor*{palette primary}{use=structure,fg=white,bg=mypurple} %
+%\setbeamercolor{normal text}{fg=white}                                %
+%\setbeamertemplate{navigation symbols}{}                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{background}{%
+  \includegraphics[width=\paperwidth]{fondo}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{%
+Brandon Marquez Salazar
+}
+\title{%
+  $0
+}
+\begin{document}
+  \maketitle
+\end{document}
+endsnippet
+
+snippet Tabular "Entorno de tabulacion"
+\begin{tabular}{ $0 }
+\end{tabular}
+endsnippet
+
+snippet Itemz "Entorno itemize"
+\begin{itemize}
+  \item $0
+\end{itemize}
+endsnippet
+
+snippet itm "Nuevo item a la lista"
+\item $0
+endsnippet
+
+snippet cImg "Entorno itemize"
+\begin{center}
+  \includegraphics[]{$0}
+\end{center}
+endsnippet
+
+snippet Img "Entorno itemize"
+  \includegraphics[]{$0}
+endsnippet
+
+snippet Marco1 "Marco chino negro"
+
+%% Paquetes necesarios para trabajar con el
+%% marco. Comentados para evitar redundancias.
+% \usepackage{pgfornament}
+% \usepackage{eso-pic}
+
+%% Para habilitar la imagen correctamente,
+%% utilizar la Macro \adorna en la página donde
+%% comenzará el adornado
+%% A veces requerirá más de una compilación si
+%% no es correctamente compilado.
+\newcommand\adorna{\AddToShipoutPictureBG{
+  \newpgfornamentfamily{pgfhan}
+  \begin{tikzpicture}[overlay,remember picture]
+    \node [anchor=north west,yshift=-1cm,xshift=0.52in] at (current page.north west){%
+      \pgfornament[width=1.3cm]{9}
+    };
+    \node [anchor=north east,yshift=-1cm,xshift=-0.5in] at (current page.north east){%
+      \pgfornament[width=1.3cm,symmetry=v]{9}
+    };
+    \node [anchor=south west,yshift=1cm,xshift=0.52in] at (current page.south west){%
+      \pgfornament[width=1.3cm,symmetry=h]{9}
+    };
+    \node [anchor=south east,yshift=1cm,xshift=-0.5in] at (current page.south east){%
+      \pgfornament[width=1.3cm,symmetry=c]{9}
+    };
+  \end{tikzpicture}
+}}
+endsnippet
+
+
+snippet ittxt "Description"
+{\itshape $0}
+endsnippet
+
+snippet bftxt "Description"
+{\bfseries $0}
+endsnippet
+
+snippet bitxt "Description"
+{\bfseries\itshape $0}
+endsnippet
+
+snippet FrameB "Make slide in beamer like"
+\begin{frame}{
+%%%%Title%%%%
+  $0
+}
+%%%%Content%%%%
+  
+\end{frame}
+endsnippet
+
+snippet frac "Fraction" w
+\frac{$1}{$2}$0
+endsnippet
+
+snippet "\\begin\{(\w+)\}" "multiline begin{} / end{}" rbA
+\begin{`!p snip.rv = match.group(1)`}
+	$1
+\end{`!p snip.rv = match.group(1)`}
+$0
+endsnippet
+
+priority -20
+
+snippet "(?<!^)\\begin\{(\w+)\}" "inline begin{} / end{}" riA
+\begin{`!p snip.rv = match.group(1)`} $1 \end{`!p snip.rv = match.group(1)`} $0
+endsnippet

@@ -1,0 +1,141 @@
+let mapleader=" "
+
+nnoremap <Leader>> 10<C-w>>
+nnoremap <Leader>< 10<C-w><
+
+map <Leader>nt :NvimTreeToggle<CR>
+map <Leader>p  :Files<CR>
+map <Leader>ag :Ag<CR>
+map <Leader>sq :DBUIToggle<CR>
+
+nnoremap <silent> <Leader><Up>    :TmuxNavigateUp<CR>
+nnoremap <silent> <Leader><Down>  :TmuxNavigateDown<CR>
+nnoremap <silent> <Leader><Right> :TmuxNavigateRight<CR>
+nnoremap <silent> <Leader><Left>  :TmuxNavigateLeft<CR>
+
+map <Leader>ob :Buffers<cr>
+map <Leader>of :Files<cr>
+map <Leader>og :GFiles?<cr>
+map <Leader>ow :Windows<cr>
+map <Leader>ol :Lines<cr>
+map <Leader>oh :History<cr>
+
+
+map <silent><Leader>ww :w<CR>
+map <silent><Leader>ws :Sw<CR>
+map <silent><Leader>bd :bdelete<CR>
+
+
+map <silent> <leader>nm :set norelativenumber<CR>
+map <silent> <leader>nn :set relativenumber<CR>
+
+
+"nnoremap <silent> <leader>l0 :!. "%"<CR>
+nnoremap <silent> <leader>bgn :hi Normal guibg=none ctermbg=none<CR>
+nnoremap <silent> <leader>lp !lp -o orientation-requested=3 -o media=letter -o lpi=10 -o cpi=14 "%"
+autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>lp :!lp `mmcfg "%"`<CR>
+
+
+"autocmd BufLeave   *      nunmap   <silent> <leader>ll
+
+" Below only if in fbterm
+if !empty($FBTERM)
+  autocmd FileType    dot      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!plantuml `mmcfg "%"`<CR> :!fbv -f `mmcfg "%" png` &>/dev/null 2>&1 &<CR>
+  autocmd FileType    plantuml nnoremap   <buffer> <silent> <leader>ll :w<CR> :!plantuml `mmcfg "%"`<CR> :!fbv -f `mmcfg "%" png` &>/dev/null 2>&1 &<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!xelatex `mmcfg "%"`<CR> :!biber `mmcfg "%"`<CR> :!xelatex `mmcfg "%"`<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>l1 :w<CR> :!xelatex `mmcfg "%"` &<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>lk :w<CR> :!xelatex `mmcfg "%"`<CR> :belowright 5split +terminal\ jfbview\ "mmcfg % pdf"<CR>
+  autocmd FileType    python   nnoremap   <buffer> <silent> <leader>ll :w<CR> :!python `mmcfg "%"`<CR>
+  autocmd FileType    sh       nnoremap   <buffer> <silent> <leader>ll :w<CR> :!bash `mmcfg "%"`<CR>
+  autocmd FileType    svg      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!inkscape --export-type="png" --export-filename="%:r.png" "%"<CR> :!fbv -f `mmcfg "%" png` &>/dev/null 2>&1 &<CR>
+  autocmd FileType    zip      nnoremap   <buffer> <silent> <leader>ll :!unzip "%" -d "%:r/"<CR>
+  autocmd FileType    cpp      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!g++ -Wall --std=c++17 -g `mmcfg "%"`
+  autocmd FileType    c        nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gcc -Wall -g `mmcfg "%"`
+  autocmd FileType    matlab   nnoremap   <buffer> <silent> <leader>ll :w<CR> :vsplit +term\ octave-cli\ <\ `mmcfg "%"` <CR>
+endif
+if !empty($DISPLAY)
+  autocmd FileType    dot      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!plantuml `mmcfg "%"`<CR>
+  autocmd FileType    dot      nnoremap   <buffer> <silent> <leader>lk :w<CR> :!plantuml `mmcfg "%"`<CR> :!nsxiv `mmcfg "%" png`&<CR>
+  autocmd FileType    plantuml nnoremap   <buffer> <silent> <leader>ll :w<CR> :!plantuml `mmcfg "%"`<CR>
+  autocmd FileType    plantuml nnoremap   <buffer> <silent> <leader>lk :w<CR> :!plantuml `mmcfg "%"`<CR> :!nsxiv `mmcfg "%" png`&<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!xelatex -synctex=0 `mmcfg "%"`<CR> :!biber `mmcfg "%"`<CR> :!xelatex -synctex=0 `mmcfg "%"`<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>l1 :w<CR> :!xelatex -synctex=0 `mmcfg "%"` &<CR>
+  autocmd FileType    tex      nnoremap   <buffer> <silent> <leader>lk :w<CR> :!xelatex `mmcfg "%"`<CR> :!sioyek `mmcfg "%" "pdf"`&<CR>
+  autocmd FileType    python   nnoremap   <buffer> <silent> <leader>ll :w<CR> :!python `mmcfg "%"`<CR>
+  autocmd FileType    sh       nnoremap   <buffer> <silent> <leader>ll :w<CR> :!bash `mmcfg "%"`<CR>
+  autocmd FileType    svg      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!inkscape --export-type="png" --export-filename="`mmcfg % png`" `mmcfg %`<CR>
+  autocmd FileType    svg      nnoremap   <buffer> <silent> <leader>lk :w<CR> :!inkscape --export-type="png" --export-filename="`mmcfg % png`" `mmcfg %`<CR> :!nsxiv `mmcfg % png`&<CR>
+  autocmd FileType    zip      nnoremap   <buffer> <silent> <leader>ll :!unzip "%" -d "%:r/"<CR>
+  autocmd FileType    cpp      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!g++ -Wall --std=c++17 -g `mmcfg "%"` 
+  autocmd FileType    c        nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gcc -Wall -g `mmcfg "%"` 
+  autocmd FileType    matlab   nnoremap   <buffer> <silent> <leader>ll :w<CR> :vsplit +term\ octave-cli\ <\ `mmcfg "%"` <CR>
+endif
+
+
+
+"autocmd BufRead    *.tex  nnoremap <silent> <leader>ll :w<CR> :!xelatex "%"<CR>
+"autocmd BufEnter   *.tex  nnoremap <silent> <leader>ll :w<CR> :!xelatex "%"<CR>
+"autocmd BufLeave   *.tex  nunmap   <silent> <leader>ll
+"autocmd BufNewFile *.tex  nnoremap <silent> <leader>ll :w<CR> :!xelatex "%"<CR>
+"
+"autocmd BufRead    *.puml nnoremap <silent> <leader>ll :w<CR> :!plantuml "%"<CR>
+"autocmd BufEnter   *.puml nnoremap <silent> <leader>ll :w<CR> :!plantuml "%"<CR>
+"autocmd BufLeave   *.puml nunmap   <silent> <leader>ll
+"autocmd BufNewFile *.puml nnoremap <silent> <leader>ll :w<CR> :!plantuml "%"<CR>
+"
+"autocmd BufRead    *.py   nnoremap <silent> <leader>ll :w<CR> :!python "%"<CR>
+"autocmd BufEnter   *.py   nnoremap <silent> <leader>ll :w<CR> :!python "%"<CR>
+"autocmd BufLeave   *.py   nunmap   <silent> <leader>ll
+"autocmd BufNewFile *.py   nnoremap <silent> <leader>ll :w<CR> :!python "%"<CR>
+"
+"autocmd BufRead    *.sh   nnoremap <silent> <leader>ll :w<CR> :!bash "%"<CR>
+"autocmd BufEnter   *.sh   nnoremap <silent> <leader>ll :w<CR> :!bash "%"<CR>
+"autocmd BufLeave   *.sh   nunmap   <silent> <leader>ll
+"autocmd BufNewFile *.sh   nnoremap <silent> <leader>ll :w<CR> :!bash "%"<CR>
+
+
+
+"nnoremap  :<CR>
+"nnoremap  :<CR>
+
+inoremap <M-H> <esc>:tabprevious<CR>i
+inoremap <M-L> <esc>:tabnext<CR>i
+nnoremap <M-H> :tabprevious<CR>
+nnoremap <M-L> :tabnext<CR>
+
+inoremap <F2> <esc>:TmuxNavigateLeft<CR>i
+inoremap <F3> <esc>:TmuxNavigateDown<CR>i
+inoremap <F4> <esc>:TmuxNavigateUp<CR>i
+inoremap <F5> <esc>:TmuxNavigateRight<CR>i
+inoremap <F8> <esc>:bn <CR>i
+inoremap <F9> <esc>:bp <CR>i
+nnoremap <F2> :TmuxNavigateLeft<CR>
+nnoremap <F3> :TmuxNavigateDown<CR>
+nnoremap <F4> :TmuxNavigateUp<CR>
+nnoremap <F5> :TmuxNavigateRight<CR>
+nnoremap <F8> :bn <CR>
+nnoremap <F9> :bp <CR>
+"nnoremap <leader>l :TmuxNavigateRight<CR>
+"nnoremap <leader>h :TmuxNavigateLeft<CR>
+"nnoremap <leader>k :TmuxNavigateUp<CR>
+"nnoremap <leader>j :TmuxNavigateDown<CR>
+
+
+nnoremap <silent> <leader>pv1 :let g:virtualenv_directory=pwd<CR>
+
+nnoremap <silent> <leader>rr :source ~/.config/nvim/init.vim<CR>
+let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsListSnippets = "<Nop>"
+
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" CODEIUM
+imap <script><silent><nowait><expr> <C-i> codeium#Accept()
+imap <C-_> <cmd>call codeium#Clear()<CR>
+imap <M--> <cmd>call codeium#CycleCompletions(1)<CR>
+imap <M-+> <cmd>call codeium#CycleCompletions(-1)<CR>
+nmap <silent> <leader>c3 :CodeiumDisable<CR>
+nmap <silent> <leader>c4 :CodeiumEnable<CR>
+
+nmap <silent> <leader>cc1 :set concealcursor= <CR>
+nmap <silent> <leader>cc2 :set concealcursor=n<CR>

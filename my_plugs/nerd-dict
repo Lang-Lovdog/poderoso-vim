@@ -1,0 +1,115 @@
+lua << EOF
+-- se con figurará una función que mandé llamar un programa
+-- desde neovim, por ejemplo /home/user/foo
+
+-- primero definimos la función  que se invocará  en vim
+--  esta función se llamará dicta.
+vim.g.dicta_iniciada=0;
+vim.g.lenguaje="es";
+
+vim.g.es="es"
+vim.g.en="en"
+vim.g.en_giga="en01"
+vim.g.fr="fr"
+vim.g.ja="ja"
+vim.g.ch="ch"
+
+--
+vim.api.nvim_create_user_command(
+  "DictaInicia",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEYP --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-es-0.42/vosk-model-es-0.42 &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "DictaStart",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEYP --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-small-en-us-0.15 &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "DictaStartGiga",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEYP --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-en-us-0.42-gigaspeech &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "DictaCommence",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEYP --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-small-fr-0.22 &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "DictaHajimemasu",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEYP --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-small-ja-0.22 &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "DictaKaishi",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation begin --simulate-input-tool TMUXKEY --vosk-model-dir=/home/lang_lovdog/PACKAGES/nerd-dictation/vosk-model-small-cn-0.22 &",false)
+    vim.g.dicta_iniciada = 1
+    end,
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  "DictaStop",
+  function(opts)
+    vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation end",false)
+    vim.g.dicta_iniciada = 0
+  end,
+  {}
+)
+
+vim.api.nvim_create_user_command(
+  "DictaToggle",
+  function(opts)
+    if vim.g.dicta_iniciada == 0 then
+      if vim.g.lenguaje==vim.g.es then    
+        vim.cmd("DictaInicia")
+        --vim.api.nvim_exec("!echo Es español xd", false)
+      elseif vim.g.lenguaje==vim.g.en then
+        vim.cmd("DictaStart")
+        --vim.api.nvim_exec("!echo It is english xd", false)
+      elseif vim.g.lenguaje==vim.g.en_giga then
+        vim.cmd("DictaStartGiga")
+        --vim.api.nvim_exec("!echo It is english xd", false)
+      elseif vim.g.lenguaje==vim.g.fr then
+        vim.cmd("DictaCommence")
+        --vim.api.nvim_exec("!echo Ce est francaise xd", false)
+      elseif vim.g.lenguaje==vim.g.ja then
+        vim.cmd("DictaHajimemasu")
+        --vim.api.nvim_exec("!echo Nihongo desu :3")
+      elseif vim.g.lenguaje==vim.g.ch then
+        vim.cmd("DictaKaishi")
+        --vim.api.nvim_exec("!echo Nihongo desu :3")
+      end
+      vim.g.dicta_iniciada = 1
+      return
+    end
+    vim.cmd("DictaStop")
+    --vim.api.nvim_exec("!~/PACKAGES/nerd-dictation/nerd-dictation end",false)
+    vim.g.dicta_iniciada = 0
+  end,
+  {}
+)
+
+vim.api.nvim_set_keymap(
+  'i',
+  '<F10>',
+  '<cmd>DictaToggle<CR>',
+  { noremap = true }
+)
+EOF

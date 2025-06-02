@@ -1,0 +1,26 @@
+lua << EOF
+-- Este plugin sirve para enviarle el cwd al bash que se encuentra debajo de neovim,
+-- para ello, se requiere tener en funcionamiento la herramienta tmux send-keys
+-- Definimos la función de usuario con la api de nvim
+vim.api.nvim_create_user_command(
+"CwdToBashBelow",
+  function(opts)
+    local cwd = vim.fn.getcwd()
+    vim.fn.system("tmux send-keys -t bottom \"cd '" .. cwd .. "'\" C-m")
+  end,
+  { bang = true }
+)
+
+vim.api.nvim_create_user_command(
+"TexOpen",
+  function(opts)
+    local curtexbuf = vim.fn.fnamemodify(vim.fn.expand("%"), ":r.pdf")
+    vim.fn.system("tmux send-keys -t bottom \"myfbpdf '" .. curtexbuf .. "'\" C-m")
+  end,
+  { bang = true }
+)
+
+EOF
+
+command! CurBufCd cd %:p:h
+command! TexOpen  !tmux send-keys -t bottom "myfbpdf \"%:r.pdf\"" C-m
