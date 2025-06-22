@@ -12,28 +12,38 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'ixru/nvim-markdown'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  Plug 'folke/which-key.nvim'
+  """ EDITING
   " Neorg Section
   Plug 'nvim-neorg/neorg'
   Plug 'nvim-neorg/lua-utils.nvim'
   Plug 'pysan3/pathlib.nvim'
   Plug 'nvim-neotest/nvim-nio'
   Plug 'MunifTanjim/nui.nvim'
+  """Plug '3rd/diagram.nvim'
+  """Plug '3rd/image.nvim'
+  "Jupyter config
+  Plug 'quarto-dev/quarto-nvim'
+  Plug 'jmbuhr/otter.nvim'
+  Plug 'jc-doyle/cmp-pandoc-references'
+  Plug 'GCBallesteros/jupytext.nvim'
+  Plug 'benlubas/molten-nvim', {'do': ':UpdateRemotePlugins'}
+  Plug 'willothy/wezterm.nvim'
   "
+  """ EDITING
   Plug 'norcalli/nvim-colorizer.lua' 
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'alvan/vim-closetag'
   Plug 'kylechui/nvim-surround'
   Plug 'tpope/vim-surround'
-  Plug 'honza/vim-snippets'
-  Plug 'sirver/ultisnips'
-  Plug 'quangnguyen30192/cmp-nvim-ultisnips'
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
   Plug 'mhartington/formatter.nvim'
   Plug 'mfussenegger/nvim-lint'
   Plug 'mfussenegger/nvim-dap'
+  " Auto Completion Section
   Plug 'jc-doyle/cmp-pandoc-references'
   Plug 'micangl/cmp-vimtex'
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -41,9 +51,16 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'L3MON4D3/LuaSnip'
+  Plug 'hrsh7th/vim-vsnip'
   Plug 'saadparwaiz1/cmp_luasnip'
-  Plug 'Exafunction/codeium.vim', {'branch':'main'}
+  Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+  "
+  " Snippets Section
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'honza/vim-snippets'
+  Plug 'sirver/ultisnips'
+  "
+  Plug 'Exafunction/windsurf.vim', { 'branch': 'main' }
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
