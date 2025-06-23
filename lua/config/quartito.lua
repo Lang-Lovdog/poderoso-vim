@@ -31,8 +31,9 @@ require('jupytext').setup({
   }
 })
 
-g.molten_image_provider = "wezterm"
-g.molten_output_win_max_height = 20
+g.molten_auto_image_popup = true
+g.molten_image_provider = "image.nvim"
+g.molten_output_win_max_height = 30
 g.molten_output_virt_lines = true
 g.molten_virt_text_output = true
 g.molten_auto_open_output = false
@@ -62,6 +63,8 @@ wk.add({
  { "<leader>0qo", ":MoltenShowOutput<cr>", desc = "Show Output" },
  { "<leader>0qv", "<cmd>VenvSelect<cr>", desc = "Select LSP Env" },
 })
+
+require("venv-selector").setup()
 
 vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.qmd",

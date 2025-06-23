@@ -20,6 +20,7 @@ cmp.setup({
   }),
   sources = {
     { name = "nvim_lsp" },
+    { name = "neorg" },
     { name = "vimtex" },
     { name = 'render-markdown' },
     { name = "ultisnips" },

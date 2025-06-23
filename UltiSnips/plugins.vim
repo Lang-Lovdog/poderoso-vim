@@ -20,9 +20,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pysan3/pathlib.nvim'
   Plug 'nvim-neotest/nvim-nio'
   Plug 'MunifTanjim/nui.nvim'
-  """Plug '3rd/diagram.nvim'
-  """Plug '3rd/image.nvim'
+  Plug '3rd/diagram.nvim'
+  Plug '3rd/image.nvim'
+  Plug 'nvim-neorg/tree-sitter-norg'
   "Jupyter config
+  Plug 'linux-cultist/venv-selector.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'quarto-dev/quarto-nvim'
   Plug 'jmbuhr/otter.nvim'
   Plug 'jc-doyle/cmp-pandoc-references'
