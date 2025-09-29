@@ -31,7 +31,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'GCBallesteros/jupytext.nvim'
   Plug 'benlubas/molten-nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'willothy/wezterm.nvim'
-  "
+  " Overleaf
+  Plug 'dmadisetti/AirLatex.vim', {'do': ':UpdateRemotePlugins'}
   """ EDITING
   Plug 'norcalli/nvim-colorizer.lua' 
   Plug 'HiPhish/rainbow-delimiters.nvim'
@@ -91,4 +92,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'rudrab/vimf90'
   Plug 'petRUShka/vim-sage'
+  """ MISC Productivity section
+  Plug 'ribelo/taskwarrior.nvim'
+  """
 call plug#end()

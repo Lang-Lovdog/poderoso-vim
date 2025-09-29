@@ -44,6 +44,13 @@ let g:clipboard={
   \  'cache_enabled': 1,
   \}
 
+
+""" AirLatex Overleaf
+" your login-name
+"let g:AirLatexUsername='cookies:overleaf_session2=s%3ASAsejv5wNH_f16GQBJ0mmVHQNb0zMPZP.kWIcCDirPUdPYFgefY%2Ft9dCE%2B9%2Flm6Y6Wv5GPAok3Kc'
+
+let g:AirLatexCookieDB="~/.mozilla/firefox/cuzie91k.default-default/cookies.sqlite"
+
 " Viewer options: One may configure the viewer either by specifying a built-in
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
