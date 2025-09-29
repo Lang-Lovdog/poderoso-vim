@@ -69,6 +69,8 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.norg",
   callback = function()
     vim.bo.filetype = "norg"
+    -- Set conceal level to 2
+    vim.opt.conceallevel = 2
   end,
 })
 
@@ -76,5 +78,12 @@ vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*.norg",
   callback = function()
     vim.bo.filetype = "norg"
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.quarto",
+  callback = function()
+    vim.bo.conceallevel = 1
   end,
 })

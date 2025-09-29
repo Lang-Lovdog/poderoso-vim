@@ -1,4 +1,5 @@
-lspc = require("lspconfig")
+--lspc = require("lspconfig")
+lspc = vim.lsp.config
 
 lspc.intelephense.setup {
     --root_dir = require('lspconfig.util').root_pattern('composer.json','.git','index.php','index.html')*/

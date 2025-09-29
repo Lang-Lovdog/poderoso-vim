@@ -79,3 +79,10 @@ vim.api.nvim_create_autocmd("BufRead", {
     vim.bo.filetype = "quarto"
   end,
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.qmd",
+  callback = function()
+    vim.opt.conceallevel = 1
+  end,
+})
