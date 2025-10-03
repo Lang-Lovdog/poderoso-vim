@@ -1,4 +1,5 @@
 snippet ArticleEsXe "LaTeX article básico en español"
+%! TeX program = xelatex
 \documentclass[10pt]{article}
 \usepackage[vmargin=1in, hmargin=1.2in]{geometry}
 \usepackage{fontspec}
@@ -76,7 +77,8 @@ $0
 \end{aligned}\$
 endsnippet
 
-snippet BeamerEs "LaTeX article básico en español"
+snippet BeamerEs "LaTeX Beamer básico en español, utiliza una imágen: «fondo»"
+%! TeX program = xelatex
 \documentclass[12pt]{beamer}
 \usepackage{fontspec}
 \setmainfont{QTBookmann}
@@ -84,7 +86,7 @@ snippet BeamerEs "LaTeX article básico en español"
 \usepackage{xcolor}
 \usepackage{dirtytalk}
 \usepackage{graphicx}
-\setdefaultlanguage[variant=mexican]{spanish}
+\setdefaultlanguage{spanish}
 \usepackage{multirow}
 \usetheme{Copenhagen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -167,15 +169,15 @@ snippet Marco1 "Marco chino negro"
 endsnippet
 
 
-snippet ittxt "Description"
+snippet ittxt "Italic text"
 {\itshape $0}
 endsnippet
 
-snippet bftxt "Description"
+snippet bftxt "Bold text"
 {\bfseries $0}
 endsnippet
 
-snippet bitxt "Description"
+snippet bitxt "Bold italic text"
 {\bfseries\itshape $0}
 endsnippet
 
@@ -185,7 +187,7 @@ snippet FrameB "Make slide in beamer like"
   $0
 }
 %%%%Content%%%%
-  
+  $1
 \end{frame}
 endsnippet
 
