@@ -70,7 +70,7 @@ hi Directory                guifg=#ffffff guibg=NONE    gui=NONE cterm=NONE
 hi EndOfBuffer              guifg=#dadada guibg=NONE    gui=NONE cterm=NONE
 hi ErrorMsg                 guifg=#dadada guibg=#080808 gui=reverse cterm=reverse
 hi FoldColumn               guifg=#ffffff guibg=#000000 gui=NONE cterm=NONE
-hi Folded                   guifg=#8844bb guibg=#222200 gui=NONE cterm=NONE
+hi Folded                   guifg=#8844bb guibg=#0a000a gui=NONE cterm=NONE
 hi IncSearch                guifg=#ffaf00 guibg=#080808 gui=reverse cterm=reverse
 hi LineNr                   guifg=#bbbbbb guibg=NONE    gui=NONE cterm=NONE
 hi MatchParen               guifg=#ffff00 guibg=#ff0000 gui=bold cterm=bold

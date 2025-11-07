@@ -19,6 +19,7 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
   }),
   sources = {
+    { name = "otter" },
     { name = "nvim_lsp" },
     { name = "neorg" },
     { name = "vimtex" },

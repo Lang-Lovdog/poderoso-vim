@@ -64,7 +64,7 @@ wk.add({
  { "<leader>0qv", "<cmd>VenvSelect<cr>", desc = "Select LSP Env" },
 })
 
-require("venv-selector").setup()
+require("venv-selector").setup({})
 
 vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.qmd",

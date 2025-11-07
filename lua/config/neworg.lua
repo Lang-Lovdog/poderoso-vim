@@ -1,11 +1,28 @@
 local JournalPath = "$HOME/Documentos/Journal/"
 
+-- Ensure filetype is set correctly  
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {  
+    pattern = "*.norg",  
+    callback = function()  
+        vim.bo.filetype = "norg"  
+        vim.opt.conceallevel = 2
+    end,  
+})
+
 require("neorg").setup {
+--  lazy_loading = false,
   load = {
+    ["core.export"] = {},  
+    ["core.export.markdown"] = {  
+        config = {  
+            extensions = "all",  -- or specify individual extensions  
+            extension = "md",  
+        }  
+    },
     ["core.defaults"] = {},
     ["core.keybinds"] = {},
-    ["core.concealer"] = {},
     ["core.autocommands"] = {},
+    ["core.concealer"] = {},
     ["core.neorgcmd"] = {},
     ["core.highlights"] = {},
     ["core.completion"] = { config = { engine = "nvim-cmp" } },
@@ -44,7 +61,6 @@ require("neorg").setup {
           personal = JournalPath .. "PersonalJournal",
           MiMundoSciFi = JournalPath .. "MiMundoSciFi",
         },
-        default_workspace = "hataraki",
       },
     },
   },
@@ -64,22 +80,6 @@ vim.api.nvim_create_user_command("JournalUpdate", function()
   print(vim.fn.system("cd " .. JournalPath .. " && git pull origin historia"))
 end, {})
 
-
-vim.api.nvim_create_autocmd("BufNewFile", {
-  pattern = "*.norg",
-  callback = function()
-    vim.bo.filetype = "norg"
-    -- Set conceal level to 2
-    vim.opt.conceallevel = 2
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "*.norg",
-  callback = function()
-    vim.bo.filetype = "norg"
-  end,
-})
 
 vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*.quarto",

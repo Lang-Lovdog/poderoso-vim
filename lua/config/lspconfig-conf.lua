@@ -1,20 +1,22 @@
 --lspc = require("lspconfig")
 lspc = vim.lsp.config
+lspe = vim.lsp.enable
 
-lspc.intelephense.setup {
-    --root_dir = require('lspconfig.util').root_pattern('composer.json','.git','index.php','index.html')*/
-    root_dir = require('lspconfig.util').root_pattern('index.php')
-}
+lspc('intelephense', {
+  --root_dir = require('lspconfig.util').root_pattern('composer.json','.git','index.php','index.html')*/
+  root_dir = require('lspconfig.util').root_pattern('index.php')
+})
+lspe('intelephense')
 
-lspc.clangd.setup{}
+lspe('clangd')
 
-lspc.fortls.setup{}
+lspe('fortls')
 
 require('render-markdown').setup({
     completions = { lsp = { enabled = true } },
 })
 
-lspc.texlab.setup({
+lspc('texlab',{
     filetypes = { 'tex', 'bib', 'plaintex' },
     log_level = vim.lsp.protocol.MessageType.Log,
     message_level = vim.lsp.protocol.MessageType.Log,
