@@ -6,7 +6,6 @@ lspc('intelephense', {
   --root_dir = require('lspconfig.util').root_pattern('composer.json','.git','index.php','index.html')*/
   root_dir = require('lspconfig.util').root_pattern('index.php')
 })
-lspe('intelephense')
 
 lspe('clangd')
 

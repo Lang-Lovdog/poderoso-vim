@@ -14,6 +14,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'MeanderingProgrammer/render-markdown.nvim'
   Plug 'folke/which-key.nvim'
   """ EDITING
+  " Wolfram/Mathics Section
+  Plug 'voldikss/vim-mma'
   " Neorg Section
   Plug 'nvim-neorg/neorg'
   Plug 'nvim-neorg/lua-utils.nvim'
@@ -57,13 +59,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'hrsh7th/vim-vsnip'
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+  Plug 'numToStr/Comment.nvim'
   "
   " Snippets Section
   Plug 'L3MON4D3/LuaSnip'
   Plug 'honza/vim-snippets'
   Plug 'sirver/ultisnips'
   "
+  " Navigation Section
+  Plug 'SmiteshP/nvim-navic'
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'SmiteshP/nvim-navbuddy'
+  "
   Plug 'Exafunction/windsurf.vim', { 'branch': 'main' }
+  Plug 'nomnivore/ollama.nvim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -87,6 +96,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'sheerun/vim-polyglot'
   Plug 'jbyuki/instant.nvim'
+  Plug 'azratul/live-share.nvim'
   Plug 'stevearc/oil.nvim'
   Plug 'nvim-tree/nvim-tree.lua'
   Plug 'ryanoasis/vim-devicons'
@@ -94,5 +104,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'petRUShka/vim-sage'
   """ MISC Productivity section
   Plug 'ribelo/taskwarrior.nvim'
+  Plug 'basola21/PDFview'
   """
 call plug#end()

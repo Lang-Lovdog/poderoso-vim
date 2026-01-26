@@ -24,6 +24,9 @@ endfunction
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
+"Instant config
+let g:instant_username = "lovdog"
+
 "Bracey_Config
 let g:bracey_browser_command="midori"
 let g:bracey_server_port=3000
@@ -66,15 +69,15 @@ let g:vimtex_view_enabled = 0
 let g:vimtex_compiler_latexmk = {
   \ 'executable': 'latexmk',
   \ 'options': [
-  \   '-xelatex',
+  \   '-shell-escape',
   \   '-file-line-error',
   \   '-synctex=1',
   \   '-interaction=nonstopmode',
+  \   '-bibtex',
   \ ],
   \}
 
 let g:fzf_layout={'down': '30%'}
-
 
 "Tree Sitter
 lua << EOF
