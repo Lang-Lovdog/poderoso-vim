@@ -35,17 +35,18 @@ syntax match liotreeLateralBar /^\s*\zs|/ contained
 syntax match liotreeDepthMark  /^\s*\zs[-+]\+\ze\s/ contains=liotreeLateralBar
 syntax match liotreeRootMarker /^\s*\zs|/  " Root level marker
 
-" Directory and file names
+" Directory and file names - Fixed patterns
 syntax match liotreeDirname    /^\s*\zs[-+]\+\ze\s\+\zs[^/]\+\/\ze\s*$/ contains=liotreeDepthMark
 syntax match liotreeFilename   /^\s*\zs[-+]\+\ze\s\+\zs[^/]\+\ze\s*$/   contains=liotreeDepthMark
-syntax match liotreeRootDir    /^\s*\zs|\ze[^|-+][^/]*\//               contains=liotreeRootMarker
-syntax match liotreeRootFile   /^\s*\zs|[^/]\+\ze\s*$/                  contains=liotreeRootMarker
+
+" Root directory and file - Fixed patterns without complex lookahead
+syntax match liotreeRootDir    /^\s*|\zs[^/]*\// contains=liotreeRootMarker
+syntax match liotreeRootFile   /^\s*|\zs[^/]*$/ contains=liotreeRootMarker
 
 " Comments
 syntax match liotreeCommentStart /^\s*>.*$/ contained
 syntax match liotreeCommentCont  /^\s*|.*$/ contained
 syntax region liotreeComment start=/^\s*>/ end=/^\ze\s*[^-+>|]/me=e-1 contains=liotreeCommentStart,liotreeCommentCont
-syntax region liotreeCommentBlock start="\s*>.*$" end="\ze\s*[^-+>|]" contained contains=liotreeCommentLine,liotreeCommentCont keepend
 
 " Errors (simplified)
 syntax match liotreeError /^\s*[|][-+]*[^| \t\r\n\/][^\/]*\/\?/  " Malformed lines
@@ -62,3 +63,6 @@ highlight link liotreeCommentStart Comment
 highlight link liotreeCommentCont  Comment
 highlight link liotreeComment      Comment
 highlight link liotreeError        Error
+
+let &cpoptions = s:cpo_orig
+unlet s:cpo_orig
