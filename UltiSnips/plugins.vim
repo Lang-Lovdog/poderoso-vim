@@ -17,14 +17,14 @@ call plug#begin('~/.config/nvim/plugged')
   " Wolfram/Mathics Section
   Plug 'voldikss/vim-mma'
   " Neorg Section
-  Plug 'nvim-neorg/neorg'
+  Plug 'nvim-neorg/neorg', {'branch':'main'}
   Plug 'nvim-neorg/lua-utils.nvim'
   Plug 'pysan3/pathlib.nvim'
   Plug 'nvim-neotest/nvim-nio'
   Plug 'MunifTanjim/nui.nvim'
   Plug '3rd/diagram.nvim'
   Plug '3rd/image.nvim'
-  Plug 'nvim-neorg/tree-sitter-norg'
+"  Plug 'nvim-neorg/tree-sitter-norg'
   "Jupyter config
   Plug 'linux-cultist/venv-selector.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'quarto-dev/quarto-nvim'
@@ -93,7 +93,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'bling/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'dhruvasagar/vim-table-mode'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch':'master'}
   Plug 'sheerun/vim-polyglot'
   Plug 'jbyuki/instant.nvim'
   Plug 'azratul/live-share.nvim'

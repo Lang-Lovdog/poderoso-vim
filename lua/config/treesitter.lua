@@ -12,7 +12,8 @@ require'nvim-treesitter'.setup {
     "fortran",
     "cmake",
     "markdown",
-    "norg"
+    "norg",
+    "norg_meta"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)

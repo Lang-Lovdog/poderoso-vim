@@ -40,20 +40,20 @@ require("neorg").setup {
     ["core.integrations.image"] = {},
     ["core.integrations.nvim-cmp"] = {},
     ["core.integrations.otter"] = {},
-    ["core.integrations.treesitter"] = {
-      config ={
-        norg = {
-          parser_configs ={
-            url="https://github.com/nvim-neorg/tree-sitter-norg",
-          },
-        },
-        norg_meta = {
-          parser_configs = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-          },
-        },
-      },
-    },
+    --["core.integrations.treesitter"] = {
+    --  config ={
+    --    norg = {
+    --      parser_configs ={
+    --        url="https://github.com/nvim-neorg/tree-sitter-norg",
+    --      },
+    --    },
+    --    norg_meta = {
+    --      parser_configs = {
+    --        url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+    --      },
+    --    },
+    --  },
+    --},
     ["core.dirman"] = {
       config = {
         workspaces = {
