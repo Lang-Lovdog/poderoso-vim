@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 require("neorg").setup {
 --  lazy_loading = false,
   load = {
+    ["core.syntax"] = {},
     ["core.export"] = {},  
     ["core.export.markdown"] = {  
         config = {  
