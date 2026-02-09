@@ -1,6 +1,5 @@
 " Vim syntax file
 " Language:     Lovdog Dir Tree Format
-" License:      VIM LICENSE
 
 if exists('b:current_syntax')
   finish
@@ -10,8 +9,8 @@ let s:cpo_orig=&cpoptions
 set cpoptions&vim
 
 let b:current_syntax = 'liotree'
-
 syntax sync minlines=100
+
 
 " Depth Mark for the tree structure with '-' and or '+'
 " each level should be denoted by more '-' or '+'
@@ -27,42 +26,62 @@ syntax sync minlines=100
 " |--- level3/
 " |-- file        > File description, it can be whatever
 " |               the file should be correctly aligned.
-" |               It can be more than one line.
-" |- dir/
+" |               It can be more than one line. ||
+" |- dir/         > These descriptions are optional
 
-" Core elements
-syntax match liotreeLateralBar /^\s*\zs|/ contained
-syntax match liotreeDepthMark  /^\s*\zs[-+]\+\ze\s/ contains=liotreeLateralBar
-syntax match liotreeRootMarker /^\s*\zs|/  " Root level marker
+" --- Core Elements ---
+syntax match liotreeLateralBar /|/ contained
+syntax match liotreeDepthMark  /[-+]\+/ contained
+syntax match liotreeRootMarker /|/ 
 
-" Directory and file names - Fixed patterns
-syntax match liotreeDirname    /^\s*\zs[-+]\+\ze\s\+\zs[^/]\+\/\ze\s*$/ contains=liotreeDepthMark
-syntax match liotreeFilename   /^\s*\zs[-+]\+\ze\s\+\zs[^/]\+\ze\s*$/   contains=liotreeDepthMark
+" --- Quoted Names ---
+" Matches "Name"/ (Directory) or "Name" (File)
+syntax region liotreeQuotedDirname  start=/["']/ end=/["']\// contained oneline contains=liotreeQuotedContent,@NoSpell
+syntax region liotreeQuotedFilename start=/["']/ end=/["']/  contained oneline contains=liotreeQuotedContent,@NoSpell
+syntax match  liotreeQuotedContent  /[^"']\+/ contained contains=@NoSpell
 
-" Root directory and file - Fixed patterns without complex lookahead
-syntax match liotreeRootDir    /^\s*|\zs[^/]*\// contains=liotreeRootMarker
-syntax match liotreeRootFile   /^\s*|\zs[^/]*$/ contains=liotreeRootMarker
+" --- Unquoted Names (Now supports spaces/special chars until the '>' comment) ---
+" Directory: text ending in / before a comment or EOL
+syntax match liotreeUnquotedDirname /[^-+|>][^|>]\+\/\ze\(\s*>\|$\)/ contained contains=@NoSpell
+" File: text not ending in / before a comment or EOL
+syntax match liotreeUnquotedFilename /[^-+|>][^|>]\+\ze\(\s*>\|$\)/  contained contains=@NoSpell
 
-" Comments
-syntax match liotreeCommentStart /^\s*>.*$/ contained
-syntax match liotreeCommentCont  /^\s*|.*$/ contained
-syntax region liotreeComment start=/^\s*>/ end=/^\ze\s*[^-+>|]/me=e-1 contains=liotreeCommentStart,liotreeCommentCont
+" --- Comments ---
+syntax match liotreeInlineComment />.*$/ contained contains=@Spell
+syntax match liotreeCommentEnd     /||$/ contained
 
-" Errors (simplified)
-syntax match liotreeError /^\s*[|][-+]*[^| \t\r\n\/][^\/]*\/\?/  " Malformed lines
+" --- Line Definitions ---
+" Structure Line: |- Filename  > Comment
+syntax match liotreeStructureLine /^\s*|[-+]\+\s\+.*$/ transparent
+    \ contains=liotreeLateralBar,liotreeDepthMark,liotreeQuotedDirname,liotreeQuotedFilename,liotreeUnquotedDirname,liotreeUnquotedFilename,liotreeInlineComment,@Spell
 
-" Highlight links
-highlight link liotreeLateralBar   Delimiter
-highlight link liotreeDepthMark    Special
-highlight link liotreeRootMarker   Type
-highlight link liotreeDirname      Directory
-highlight link liotreeFilename     Normal
-highlight link liotreeRootDir      Directory
-highlight link liotreeRootFile     Normal
-highlight link liotreeCommentStart Comment
-highlight link liotreeCommentCont  Comment
-highlight link liotreeComment      Comment
-highlight link liotreeError        Error
+" Root Line: |Filename  > Comment
+syntax match liotreeRootLine /^\s*|[^-+ ]\+.*$/  transparent
+    \ contains=liotreeRootMarker,liotreeUnquotedDirname,liotreeUnquotedFilename,liotreeInlineComment,@Spell
+
+" Pure Comment Line: |  Description text
+syntax match liotreeCommentLine /^\s*|\s\{2,}.*$/ 
+    \ contains=liotreeLateralBar,liotreeCommentEnd,@Spell
+
+" --- The Error Fix ---
+" Only flags if a line starts with tree structure but has a quote that never closes
+syntax match liotreeError /^\s*|[-+]*\s*["'][^"']*$/
+
+" --- Highlighting Links ---
+highlight link liotreeLateralBar        Type
+highlight link liotreeStructureLine     Keyword
+highlight link liotreeDepthMark         Statement
+highlight link liotreeRootMarker        Type
+highlight link liotreeQuotedDirname     Directory
+highlight link liotreeUnquotedDirname   Directory
+highlight link liotreeQuotedFilename    Keyword
+highlight link liotreeUnquotedFilename  Identifier
+highlight link liotreeInlineComment     Comment
+highlight link liotreeCommentLine       Comment
+highlight link liotreeCommentEnd        Special
+highlight link liotreeError             Error
 
 let &cpoptions = s:cpo_orig
 unlet s:cpo_orig
+
+setlocal spell

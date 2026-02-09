@@ -1,29 +1,34 @@
 local JournalPath = "$HOME/Documentos/Journal/"
 
 -- Ensure filetype is set correctly  
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {  
-    pattern = "*.norg",  
-    callback = function()  
-        vim.bo.filetype = "norg"  
-        vim.opt.conceallevel = 2
-    end,  
-})
+--vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {  
+--    pattern = "*.norg",  
+--    callback = function()  
+--        vim.bo.filetype = "norg"  
+--        vim.opt.conceallevel = 2
+--    end,  
+--})
 
 require("neorg").setup {
 --  lazy_loading = false,
   load = {
     ["core.syntax"] = {},
+    ["core.itero"] = {},
     ["core.export"] = {},  
     ["core.export.markdown"] = {  
         config = {  
-            extensions = "all",  -- or specify individual extensions  
+            extensions = "all",
             extension = "md",  
         }  
     },
     ["core.defaults"] = {},
     ["core.keybinds"] = {},
     ["core.autocommands"] = {},
-    ["core.concealer"] = {},
+    ["core.concealer"] = {
+      config = {
+        init_open = true, 
+      }
+    },
     ["core.neorgcmd"] = {},
     ["core.highlights"] = {},
     ["core.completion"] = { config = { engine = "nvim-cmp" } },
@@ -37,7 +42,7 @@ require("neorg").setup {
     --    renderer = "core.integrations.image",
     --  },
     --},
-    ["core.integrations.treesitter"] = {},
+--    ["core.integrations.treesitter"] = {},
     ["core.integrations.image"] = {},
     ["core.integrations.nvim-cmp"] = {},
     ["core.integrations.otter"] = {},

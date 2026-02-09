@@ -195,3 +195,24 @@ vim.api.nvim_create_user_command("LinkMe", function()
     return
   end
 end, {})
+
+-- For Lovdog Tree syntax
+-- " Match filename extension to syntax filetype
+-- autocmd BufNewFile,BufRead *.liotree set filetype=liotree
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*.liotree",
+  command = "set filetype=liotree",
+})
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*.liotree",
+  command = "set filetype=liotree",
+})
+
+-- Lovdog Tree Format
+-- 1. First, register the filetype for .liotree files
+vim.filetype.add({
+  extension = {
+    liotree = "liotree",
+  },
+})
