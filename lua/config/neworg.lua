@@ -1,13 +1,16 @@
 local JournalPath = "$HOME/Documentos/Journal/"
 
--- Ensure filetype is set correctly  
---vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {  
---    pattern = "*.norg",  
---    callback = function()  
---        vim.bo.filetype = "norg"  
---        vim.opt.conceallevel = 2
---    end,  
---})
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = "*.norg",
+  callback = function()
+    vim.bo.filetype = "norg"
+    vim.treesitter.start()
+    -- This forces the legacy syntax engine to stay awake for the injections
+    vim.cmd([[syntax on]]) 
+    -- Manually load the liotree syntax into the current session
+    vim.cmd([[runtime! syntax/liotree.vim]])
+  end,
+})
 
 require("neorg").setup {
 --  lazy_loading = false,
