@@ -72,8 +72,8 @@ highlight link liotreeLateralBar        Type
 highlight link liotreeStructureLine     Keyword
 highlight link liotreeDepthMark         Statement
 highlight link liotreeRootMarker        Type
-highlight link liotreeQuotedDirname     Directory
-highlight link liotreeUnquotedDirname   Directory
+highlight link liotreeQuotedDirname     Function
+highlight link liotreeUnquotedDirname   Function
 highlight link liotreeQuotedFilename    Keyword
 highlight link liotreeUnquotedFilename  Identifier
 highlight link liotreeInlineComment     Comment
