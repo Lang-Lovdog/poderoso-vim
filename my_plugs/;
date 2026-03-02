@@ -1,0 +1,117 @@
+-- Lang Lovdog Inu Oókami Tree fornat parser
+-- This parser allows to create or complete the tree structure given by the file
+-- using the liotree format.
+-- Depth Mark for the tree structure with '-' and or '+'
+-- each level should be denoted by more '-' or '+'
+-- If wanted, the lateral bar for more formal view
+-- the names should be ended by a '/' if it's a dir, if not then its a file
+-- If needed, a comment should be added starting by a '>', and if breaking
+-- the line, just continue with a '|' and aligned with the comment line above.
+-- If levels mismatch, for example a 3rd level after a 1st level or a next
+-- level after a file, it's not valid syntax, should be error marked.
+-- |root/
+-- |- level1/
+-- |-- level2/
+-- |--- level3/
+-- |-- file        > File description, it can be whatever
+-- |               the file should be correctly aligned.
+-- |               It can be more than one line. ||
+-- |- dir/         > These descriptions are optional
+
+function LineInterpreter(line, lastline, treelist)
+  -- The line has the following information:
+  -- Depth, Name and Description
+  -- For any Name with a trailing '/' it's a directory
+  -- For any Name without a trailing '/' it's a file
+  -- If no '-' or '+' is found the line is assumed to be a comment or the root
+  -- so, empty value
+
+  -- If lastline is nil, it's the first line, thus it's the root
+  -- The lastline element should gives us a hint on the parentdir and the depth
+  -- Table to return will have Id, EntityName, EntityDepth, EntityDescription, EntityParent, EntutyType(0,1,2)
+  -- 0 for file 1 for dir 2 for comment
+  local ret = {}
+  
+  -- Remove starting | from the line
+  EntityName = line:gsub("^%s*|", "")
+  -- For any comment get only after the first '>'
+  EntityDescription = line:match(">%s*(.*)")
+
+  if lastline == nil then
+    ret.EntityId = 0
+    ret.EntityName = EntityName
+    ret.EntityDepth = 0
+    ret.EntityDescription = EntityDescription
+    ret.EntityParent = ""
+    ret.EntityType = 0
+    return ret
+  end
+
+  -- Get the first '-' or '+' if the line
+  if line:match("^%s*%|-") == nil then
+    if line:match("^%s*%|+") == nil then
+      -- Here, its a comment, so, append it to the last line
+      -- and return
+      lastline.EntityDescription = lastline.EntityDescription .. "\n" .. EntityDescription
+      return lastline
+    end
+  end
+  
+  -- If there's an actual |- or |+ structure, congrats, the line its what we want
+  -- It's a file or a dir
+  -- We need to get the depth by the number of '-' or '+'
+  local depth = 0
+  local i = 1
+  while line:match("^%s*%|-", i) ~= nil do
+    depth = depth + 1
+    i = i + 1
+  end
+
+  -- PARENTDIR
+
+  -- Now, lets see, if the depth of this is 2+ than the lastline depth
+  -- we have a problem, there's not valid nesting
+  -- the same if the depth is 1+ after a file
+  if depth > lastline.EntityDepth + 1 then
+    return nil
+  end
+  if depth > lastline.EntityDepth and lastline.EntityType == 0 then
+    return nil
+  end
+
+  -- If the lastline is a dir and the depth is higher by 1 only, then, the lastline is the parent
+  -- but, it lastline and this are the same depth, then lastline's parent is this's parent
+  if lastline.EntityType == 1 and depth == lastline.EntityDepth + 1 then
+    ret.EntityParent = lastline.EntityId
+  else
+    ret.EntityParent = lastline.EntityId
+  end
+
+  -- When the depth is lesser than the lastline, the parent should be the last dir with depth-1
+  -- in the treelist
+
+  if depth < lastline.EntityDepth then
+    for i = 1, #treelist do
+      if treelist[i].EntityDepth == depth then
+        ret.EntityParent = treelist[i].EntityId
+        break
+      end
+    end
+  end
+
+  -- SEPARATE STRUCTURE INDICATORS FROM NAME AND FROM COMMENT
+  
+  -- Here, the line will be dissected 
+  -- |--
+  -- NAME
+  -- > COMMENT
+
+  -- Lets get rid of the structure markers
+  -- any - or + which are repeated should be eliminated
+  NameComment = line:gsub("^%s*%|[%-+]+", "")
+  -- Now the name is anything before the first '>'
+  EntityName = NameComment:match("^(.*)%s*>")
+  -- Now the comment is anything after the first '>'
+  EntityDescription = NameComment:match("%s*>%s*(.*)")
+
+end
