@@ -44,3 +44,12 @@ vim.filetype.add({
   },
 })
 
+--require('nvim-treesitter.parsers').get_parser_configs().liotree = {
+--  install_info = {
+--    url = vim.fn.stdpath('config') .. '/TreeSitter-Lab/liotree',
+--    files = { 'src/parser.c' },
+--    generate_requires_npm = false,
+--    requires_generate_from_grammar = false,   -- use existing parser.c
+--  },
+--  filetype = 'liotree',
+--}

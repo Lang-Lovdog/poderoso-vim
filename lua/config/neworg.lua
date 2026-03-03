@@ -8,7 +8,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     -- This forces the legacy syntax engine to stay awake for the injections
     -- vim.cmd([[syntax on]]) 
     -- Manually load the liotree syntax into the current session
-    -- VIM.CMD([[RUNTIME! SYNTAX/LIOTREE.VIM]])
+    vim.cmd([[runtime! syntax/liotree.vim]])
+    -- Put colorcolumn at 64 and 128
+    vim.opt.colorcolumn = "64,128"
+    vim.opt.wrap = false
   end,
 })
 

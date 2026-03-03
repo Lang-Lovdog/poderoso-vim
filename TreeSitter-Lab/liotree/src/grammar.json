@@ -392,14 +392,14 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[^-+|>\\s][^|>]*\\/"
+        "value": "[^-+|>\\s][^|>\n]*\\/"
       }
     },
     "unquoted_filename": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[^-+|>\\s][^|>]*"
+        "value": "[^-+|>\\s][^|>\n]*"
       }
     },
     "unclosed_quoted_string": {
