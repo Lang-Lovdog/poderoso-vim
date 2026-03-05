@@ -195,3 +195,19 @@ vim.api.nvim_create_user_command("LinkMe", function()
     return
   end
 end, {})
+
+-- Commit and push configs, receive commit message
+vim.api.nvim_create_user_command("SaveConfigs", function(args)
+  vim_conf_path = "/home/lang_lovdog/.config/nvim/"
+  commit_message = args.fargs[1]
+  -- Surrounding quotes
+  if string.find(commit_message, "\"") == nil then
+    commit_message = "\"" .. commit_message .. "\""
+  end
+  _cd_="cd " .. vim_conf_path
+  git_add_="git add ."
+  git_commit_="git commit -m " .. commit_message
+  git_push_="git push"
+  print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
+  os.execute(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
+end, { nargs = 1 })
