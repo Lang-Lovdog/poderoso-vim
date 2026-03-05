@@ -209,5 +209,12 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   git_commit_="git commit -m " .. commit_message
   git_push_="git push"
   print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
-  os.execute(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
+  -- Execute with silent option and just print the result
+  os.execute(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. " > /tmp/gitlog.log 2>&1")
+  local gitlog = io.open("/tmp/gitlog.log", "r")
+  for line in gitlog:lines() do
+    print(line)
+  end
+  io.close(gitlog)
+  os.execute("rm /tmp/gitlog.log")
 end, { nargs = 1 })
