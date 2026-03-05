@@ -195,16 +195,3 @@ vim.api.nvim_create_user_command("LinkMe", function()
     return
   end
 end, {})
-
--- Spellchecker config
--- Set configs via vim api
--- hi clear SpellBad
-vim.api.nvim_set_hl(0, "SpellBad", {})
--- " Set style for gVim
-vim.api.nvim_set_hl(0, "SpellBad", {
-  underline = true,
--- hi SpellBad gui=undercurl
-  gui = "undercurl",
--- hi SpellBad cterm=underline
-  cterm = "underline"
-})

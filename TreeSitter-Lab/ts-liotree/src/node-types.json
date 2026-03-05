@@ -1,0 +1,164 @@
+[
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment_newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment_newline",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "entry",
+    "named": true,
+    "fields": {
+      "bridge": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "depth_mark",
+            "named": true
+          }
+        ]
+      },
+      "leaf": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "depth_mark",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "directory_name",
+            "named": true
+          },
+          {
+            "type": "file_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "entry_bar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "entry_bar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "root",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "directory_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "root_bar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "root_bar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "entry",
+          "named": true
+        },
+        {
+          "type": "root",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "depth_mark",
+    "named": true
+  },
+  {
+    "type": "directory_name",
+    "named": true
+  },
+  {
+    "type": "file_name",
+    "named": true
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "||",
+    "named": false
+  }
+]

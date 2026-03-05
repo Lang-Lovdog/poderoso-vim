@@ -54,8 +54,8 @@ hi! link CursorLineNr CursorLine
 if (has('termguicolors') && &termguicolors) || has('gui_running')
   let g:terminal_ansi_colors = ['#999999', '#d7005f', '#00af5f', '#d78700', '#00ffff', '#d787d7', '#00afaf', '#dadada', '#aaaaaa', '#ff005f', '#00d75f', '#ffaf00', '#5fafff', '#ff87ff', '#00d7d7', '#ffffff']
 endif
-hi Normal                   guifg=#bbbbbb guibg=NONE gui=NONE cterm=NONE
-hi NormalNC                 guifg=#888888 guibg=NONE gui=NONE cterm=NONE
+hi Normal                   guifg=#bbbbbb guibg=NONE    gui=NONE cterm=NONE
+hi NormalNC                 guifg=#888888 guibg=NONE    gui=NONE cterm=NONE
 hi ColorColumn              guifg=#eeeeee guibg=#1c1c1c gui=NONE cterm=NONE
 hi Conceal                  guifg=#ff00ff guibg=#000000 gui=NONE cterm=NONE
 hi Cursor                   guifg=#ff0000 guibg=#00ffff gui=reverse ctermfg=NONE ctermbg=NONE cterm=reverse

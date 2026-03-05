@@ -8,11 +8,24 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     -- This forces the legacy syntax engine to stay awake for the injections
     -- vim.cmd([[syntax on]]) 
     -- Manually load the liotree syntax into the current session
-    vim.cmd([[runtime! syntax/liotree.vim]])
+    --vim.cmd([[runtime! syntax/liotree.vim]])
     -- Put colorcolumn at 64 and 128
     vim.opt.colorcolumn = "64,128"
     vim.opt.wrap = false
   end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "norg",
+    callback = function()
+        -- This ensures that inside Neorg, the spellchecker doesn't 
+        -- overwrite the foreground color (fg) of the text.
+        vim.api.nvim_set_hl(0, "SpellBad", { fg = "NONE", sp = "#ff5555", undercurl = true, force = true })
+        vim.api.nvim_set_hl(0, "SpellCap", { fg = "NONE", sp = "#5555ff", undercurl = true, force = true })
+        
+        -- We also force Neorg's own spell capture to be transparent
+        vim.api.nvim_set_hl(0, "@spell.norg", { fg = "NONE", force = true })
+    end,
 })
 
 require("neorg").setup {
