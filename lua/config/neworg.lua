@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_hl(0, "SpellCap", { fg = "NONE", sp = "#5555ff", undercurl = true, force = true })
         
         -- We also force Neorg's own spell capture to be transparent
-        vim.api.nvim_set_hl(0, "@spell.norg", { fg = "NONE", force = true })
+        vim.api.nvim_set_hl(0, "@spell.norg", { fg = "NONE", sp="#ff00ff", undercurl = true, force = true })
     end,
 })
 
@@ -56,11 +56,11 @@ require("neorg").setup {
     ["core.dirman"] = {
       config = {
         workspaces = {
-          hataraki = JournalPath .. "HatarakiNotes",
-          personal = JournalPath .. "PersonalJournal",
-          MiMundoSciFi = JournalPath .. "MiMundoSciFi",
+          hataraki      = JournalPath .. "HatarakiNotes",
+          personal      = JournalPath .. "PersonalJournal",
+          MiMundoSciFi  = JournalPath .. "MiMundoSciFi",
           WulfusCanidae = JournalPath .. "WulfusCanidae",
-          LovoFriki = JournalPath .. "LovoFriki",
+          LovoFriki     = JournalPath .. "LovoFriki",
         },
       },
     },
