@@ -210,5 +210,5 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   git_push_="git push"
   print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
   -- Execute with subshell
-  vim.cmd("silent !(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")")
+  vim.cmd(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")
 end, { nargs = 1 })
