@@ -18,19 +18,23 @@
 ; Note: Older TS engines may need the simple version:
 ; 1. DEFAULT LINE (The Fallback)
 ; We put this first so specific icon rules can override it
-((entry 
+((file_entry 
+  bridge: (depth_mark) @conceal.line)
+(#set! @conceal.line "conceal" "─"))
+
+((directory_entry 
   bridge: (depth_mark) @conceal.line)
 (#set! @conceal.line "conceal" "─"))
 
 ; 2. LEAF (The Icons)
 ; If the leaf belongs to a directory entry
-((entry 
+((directory_entry 
     leaf: (depth_mark) @conceal.dir
     name: (directory_name))
  (#set! @conceal.dir "conceal" ""))
 
 ; If the leaf belongs to a file entry
-((entry 
+((file_entry 
     leaf: (depth_mark) @conceal.file
     name: (file_name))
  (#set! @conceal.file "conceal" ""))
@@ -52,8 +56,13 @@
 ((comment_newline "|" @conceal.pipe)
  (#set! @conceal.pipe "conceal" "│"))
 
-(entry bridge: (depth_mark) @liotree.bridge)
-(entry leaf: (depth_mark) @liotree.leaf)
+((format_space) @conceal.line
+(#set! @conceal.line "conceal" "·"))
+
+(directory_entry bridge: (depth_mark) @liotree.bridge)
+(directory_entry leaf: (depth_mark) @liotree.leaf)
+(file_entry bridge: (depth_mark) @liotree.bridge)
+(file_entry leaf: (depth_mark) @liotree.leaf)
 ((directory_name) @liotree.directory @nospell)
 ((file_name) @liotree.file @nospell)
 (root_bar) @liotree.bar

@@ -11,12 +11,18 @@ module.exports = grammar({
   name: "liotree",
 
   // Do not include \n in extras so we can anchor rules to line starts
-  extras: $ => [/[ \t\r]/],
+  extras: $ => [/[\t\r]/],
 
   rules: {
-    source_file: $ => repeat($._node),
+    source_file: $ => repeat($._item),
 
-    _node: $ => choice($.root, $.entry),
+    _item: $ => choice(
+      $.root,
+      $.file_entry,
+      $.directory_entry,
+      $.comment
+    ),
+
 
     // Fixed Root: Recognizes | followed by a directory name
     root: $ => seq(
@@ -32,20 +38,45 @@ module.exports = grammar({
     // Fixed Entry: Splits the bar from the dashes to prevent "conceal eating"
     entry_bar: $ => "|",
 
-    entry: $ => seq(
+    format_space: $ => /\s/,
+
+    depth_mark: $ => /[-+]/,
+
+    file_entry: $ => seq(
       $.entry_bar,
       field("bridge", optional(repeat($.depth_mark))),
       field("leaf", $.depth_mark),
       " ",
-      field("name", choice($.directory_name, $.file_name)),
+      field("name", $.file_name),
       optional($.comment),
       /\n/
     ),
 
-    depth_mark: $ => /[-+]/,
+    directory_entry: $ => prec.left(seq(
+      $.entry_bar,
+      field("bridge", optional(repeat($.depth_mark))),
+      field("leaf", $.depth_mark),
+      " ",
+      field("name", $.directory_name),
+      optional($.comment),
+      /\n/,
+      // THE MAGIC: A directory can contain more items
+      optional(field("contents", repeat1($._item))) 
+    )),
 
-    directory_name: $ => /[^-+|>\s][^|>\n]*\//,
-    file_name: $ => /[^-+|>\s][^|>\/\n]*/,
+    directory_name: $ => seq(
+      /[^-+|>\s][^|>\n]*\/['"]{0,1}/,
+      field("formatspace", optional(repeat($.format_space)))
+    ),
+
+    file_name: $ => seq(
+      choice(
+      /[^-+|>\s][^|>\/\n\s]*/,
+      /\"[^|>\/\n]*\"/,
+      /\'[^|>\/\n]*\'/
+      ),
+      field("formatspace", optional(repeat($.format_space)))
+    ),
 
     // Comment handles multi-line with the | bar
     comment: $ => seq(

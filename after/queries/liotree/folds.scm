@@ -1,13 +1,10 @@
-;; after/queries/liotree/folds.scm
+;; 1. Fold the 'contents' field inside a directory_entry
+(directory_entry 
+  contents: (_) @fold)
 
-; Rule 1: Multi-line comments are easy
+;; 2. Fold the 'contents' field inside a root
+(root 
+  contents: (_) @fold)
+
+;; 3. Fold multi-line comments
 (comment) @fold
-
-; Rule 2: The "Flat Tree" Fold
-; This looks for an entry with a directory and creates a range 
-; that includes the following siblings.
-(
-  (entry (directory_name)) @fold.start
-  (entry) @fold.end
-  (#make-range! "fold" @fold.start @fold.end)
-)

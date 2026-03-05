@@ -49,37 +49,52 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
--- Define the folding logic in Lua
-local function liotree_fold_level(lnum)
-  -- 1. Ask Tree-sitter first (This handles the multi-line comments)
-  local ts_level = vim.treesitter.foldexpr(lnum)
-  if ts_level ~= "0" and ts_level ~= 0 then
-    return ts_level
-  end
+---- Define the folding logic in Lua
+--local function liotree_fold_level(lnum)
+--  -- 1. Ask Tree-sitter first (This handles the multi-line comments)
+--  local ts_level = vim.treesitter.foldexpr(lnum)
+--  if ts_level ~= "0" and ts_level ~= 0 then
+--    return ts_level
+--  end
+--
+--  local line = vim.fn.getline(lnum)
+--
+--  -- 2. Tree-bar logic for the structure
+--  local markers = line:match("^%s*|[%-+]+")
+--  if markers then
+--    local symbols = markers:match("[%-%+]+")
+--    return tostring(#symbols)
+--  end
+--
+--  -- 3. Root level
+--  if line:match("^%s*|[^%-+%s]") then
+--    return "1"
+--  end
+--
+--  -- 4. Continuity (Lines starting with | followed by spaces)
+--  if line:match("^%s*|%s%s+") then
+--    return "="
+--  end
+--
+--  return "0"
+--end
+--
+--_G.LioTreeFoldLevel = liotree_fold_level
 
-  local line = vim.fn.getline(lnum)
-
-  -- 2. Tree-bar logic for the structure
-  local markers = line:match("^%s*|[%-+]+")
-  if markers then
-    local symbols = markers:match("[%-%+]+")
-    return tostring(#symbols)
-  end
-
-  -- 3. Root level
-  if line:match("^%s*|[^%-+%s]") then
-    return "1"
-  end
-
-  -- 4. Continuity (Lines starting with | followed by spaces)
-  if line:match("^%s*|%s%s+") then
-    return "="
-  end
-
-  return "0"
-end
-
-_G.LioTreeFoldLevel = liotree_fold_level
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "liotree",
+  callback = function()
+    -- The "Golden Standard" for Tree-sitter folding
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    
+    -- Start with the tree expanded so you can see your Cyan comments
+    vim.opt_local.foldlevel = 99
+    
+    -- Force a refresh of the folds
+    vim.cmd('normal! zx')
+  end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "liotree",

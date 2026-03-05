@@ -20,7 +20,100 @@
     "fields": {}
   },
   {
-    "type": "entry",
+    "type": "directory_entry",
+    "named": true,
+    "fields": {
+      "bridge": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "depth_mark",
+            "named": true
+          }
+        ]
+      },
+      "contents": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "directory_entry",
+            "named": true
+          },
+          {
+            "type": "file_entry",
+            "named": true
+          },
+          {
+            "type": "root",
+            "named": true
+          }
+        ]
+      },
+      "leaf": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "depth_mark",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "directory_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "entry_bar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "directory_name",
+    "named": true,
+    "fields": {
+      "formatspace": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "format_space",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "entry_bar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "file_entry",
     "named": true,
     "fields": {
       "bridge": {
@@ -48,10 +141,6 @@
         "required": true,
         "types": [
           {
-            "type": "directory_name",
-            "named": true
-          },
-          {
             "type": "file_name",
             "named": true
           }
@@ -74,9 +163,20 @@
     }
   },
   {
-    "type": "entry_bar",
+    "type": "file_name",
     "named": true,
-    "fields": {}
+    "fields": {
+      "formatspace": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "format_space",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "root",
@@ -123,7 +223,15 @@
       "required": false,
       "types": [
         {
-          "type": "entry",
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "directory_entry",
+          "named": true
+        },
+        {
+          "type": "file_entry",
           "named": true
         },
         {
@@ -146,11 +254,7 @@
     "named": true
   },
   {
-    "type": "directory_name",
-    "named": true
-  },
-  {
-    "type": "file_name",
+    "type": "format_space",
     "named": true
   },
   {
