@@ -198,7 +198,7 @@ end, {})
 
 -- Commit and push configs, receive commit message
 vim.api.nvim_create_user_command("SaveConfigs", function(args)
-  vim_conf_path = "/home/lang_lovdog/.config/nvim/"
+  vim_conf_path = '"$HOME/.config/nvim/"'
   commit_message = args.fargs[1]
   -- Surrounding quotes
   if string.find(commit_message, "\"") == nil then
@@ -209,6 +209,7 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   git_commit_="git commit -m " .. commit_message
   git_push_="git push"
   print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
-  -- Execute with subshell
-  vim.cmd(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")
+  -- Execute with subshell for the cd only affects the subprocess
+  vim.cmd("!(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")")
+
 end, { nargs = 1 })
