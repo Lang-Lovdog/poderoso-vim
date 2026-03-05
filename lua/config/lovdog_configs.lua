@@ -211,10 +211,4 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
   -- Execute with subshell
   vim.cmd("silent !(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")")
-  local gitlog = io.open("/tmp/gitlog.log", "r")
-  for line in gitlog:lines() do
-    print(line)
-  end
-  io.close(gitlog)
-  os.execute("rm /tmp/gitlog.log")
 end, { nargs = 1 })
