@@ -2,9 +2,10 @@
 if os.getenv("ZELLIJ") == "0" then
   require('liotree.config').setup({
     executers = {
-        ["Makefile"]      = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"0\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- make __select__ && zellij ac toggle-floating-panes",
-        ["%.plt$"]        = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"0\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- gnuplot __this__&& zellij ac toggle-floating-panes",
+        ["Makefile"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"0\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- \"make    __select__    >> __path__/log$(basename __this__)_$(date +\\%d\\%m\\%Y\\%H\\%M\\%S)log   \" && zellij ac toggle-floating-panes",
+        ["%.plt$"       ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"0\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- \"gnuplot __this__      >> __path__/log$(basename __this__)_$(date +\\%d\\%m\\%Y\\%H\\%M\\%S).log   \" && zellij ac toggle-floating-panes",
         ["__this__dir__"] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"0\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash ",
+        ["%.sh$"        ] = "zellij ac new-pane -f --cwd __path__ -x \"60\\%\" -y \"80\\%\" --height \"20\\%\" --width \"40\\%\" --pinned true -c -- bash -c \" __this__ >> __path__/log_$(basename __this__)_$(date +\\%d\\%m\\%Y\\%H\\%M\\%S).log ; sleep 10 \"  && zellij ac toggle-floating-panes",
     },
     select_methods = {
         ["Makefile"] = "make_targets",
