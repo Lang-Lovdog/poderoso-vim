@@ -214,3 +214,20 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   vim.cmd("!(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")")
 
 end, { nargs = 1 })
+
+
+-- Add qtplt and wxplt as gnuplot filetypes
+vim.filetype.add({
+  extension = {
+    qtplt = "gnuplot",
+    wxplt = "gnuplot",
+  },
+})
+
+-- Autocommand for qtplt and wxplt to set gnuplot filetypes
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = { "*.qtplt", "*.wxplt" },
+  callback = function()
+    vim.api.nvim_buf_set_option(0, "filetype", "gnuplot")
+  end,
+})
