@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = "*.norg",
   callback = function()
     vim.bo.filetype = "norg"
-    -- vim.treesitter.start()
+     vim.treesitter.start()
     -- This forces the legacy syntax engine to stay awake for the injections
     -- Put colorcolumn at 64 and 128
     vim.opt.colorcolumn = "64,128"

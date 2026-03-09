@@ -1,5 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.liotree_open_non_existing = 1
 
 vim.api.nvim_create_user_command("View",
 function()

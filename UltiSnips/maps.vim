@@ -52,6 +52,7 @@ if !empty($FBTERM)
   autocmd FileType    cpp      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!g++ -Wall --std=c++17 -g `mmcfg "%"`
   autocmd FileType    c        nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gcc -Wall -g `mmcfg "%"`
   autocmd FileType    matlab   nnoremap   <buffer> <silent> <leader>ll :w<CR> :vsplit +term\ octave-cli\ <\ `mmcfg "%"` <CR>
+  autocmd FileType    gnuplot nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gnuplot-wx `mmcfg "%"`<CR> :!fbv -f `mmcfg "%" png` &>/dev/null 2>&1 &<CR>
 endif
 if !empty($DISPLAY)
   autocmd FileType    dot      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!plantuml `mmcfg "%"`<CR>
@@ -69,6 +70,7 @@ if !empty($DISPLAY)
   autocmd FileType    cpp      nnoremap   <buffer> <silent> <leader>ll :w<CR> :!g++ -Wall --std=c++17 -g `mmcfg "%"` 
   autocmd FileType    c        nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gcc -Wall -g `mmcfg "%"` 
   autocmd FileType    matlab   nnoremap   <buffer> <silent> <leader>ll :w<CR> :vsplit +term\ octave-cli\ <\ `mmcfg "%"` <CR>
+  autocmd FileType    gnuplot  nnoremap   <buffer> <silent> <leader>ll :w<CR> :!gnuplot-qt -p "%"<CR>
 endif
 
 

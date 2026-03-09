@@ -105,5 +105,6 @@ call plug#begin('~/.config/nvim/plugged')
   """ MISC Productivity section
   Plug 'ribelo/taskwarrior.nvim'
   Plug 'basola21/PDFview'
+  Plug 'Lang-Lovdog/liotree.nvim'
   """
 call plug#end()
