@@ -209,7 +209,7 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   git_add_="git add ."
   git_commit_="git commit -m " .. commit_message
   git_push_="git push origin master"
-  print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
+  --print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
   -- Execute with subshell for the cd only affects the subprocess
   vim.cmd("!(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " || " .. git_push_ .. ")")
 
@@ -227,7 +227,7 @@ vim.api.nvim_create_user_command("GetConfigs", function()
     return
   end
   git_pull_="git pull origin master"
-  print(_cd_ .. " && " .. git_pull_)
+  --print(_cd_ .. " && " .. git_pull_)
   -- Execute with subshell for the cd only affects the subprocess
   vim.cmd("!(" .. _cd_ .. " && " .. git_pull_ .. ")")
 
