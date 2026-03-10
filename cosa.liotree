@@ -1,0 +1,62 @@
+| root/
+|- firstlevel/
+|=-
+|-- secondlevel/
+|=-
+|--- thirdlevel/
+|=-
+|---- fourthlevel/
+|=-
+|----- fifthlevel/
+|=-
+|------ sixthlevel/
+|=-
+|------- seventhlevel/
+|=-
+|-------- eighthlevel/
+|=-
+|--------- ninthlevel/
+|=-
+|---------- tenthlevel/
+|=-
+|----------- eleventhlevel/
+|=-
+|------------ twelfthlevel/
+|=-
+|------------- thirteenthlevel/
+|=-
+|-------------- fourteenthlevel/
+|=-
+|--------------- fifteenthlevel/
+|=-
+|---------------- sixteenthlevel/
+|=-
+|----------------- seventeenthlevel/
+|=-
+|------------------ eighteenthlevel/
+|=-
+|------------------- nineteenthlevel/
+|=-
+|-------------------- twentiethlevel/
+|=-
+|--------------------- twentyfirstlevel/
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
+|==
