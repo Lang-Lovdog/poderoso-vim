@@ -1,17 +1,5 @@
 local JournalPath = "$HOME/Documentos/Journal/"
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = "*.norg",
-  callback = function()
-    vim.bo.filetype = "norg"
-     vim.treesitter.start()
-    -- This forces the legacy syntax engine to stay awake for the injections
-    -- Put colorcolumn at 64 and 128
-    vim.opt.colorcolumn = "64,128"
-    vim.opt.wrap = false
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "norg",
     callback = function()
@@ -24,6 +12,16 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_hl(0, "@spell.norg", { fg = "NONE", force = true })
     end,
 })
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = {"*.norg"},
+  callback = function()
+    vim.bo.filetype = "norg"
+     vim.treesitter.start()
+    -- This forces the legacy syntax engine to stay awake for the injections
+    -- Put colorcolumn at 64 and 128
+  end,
+})
+
 
 require("neorg").setup {
 --  lazy_loading = false,

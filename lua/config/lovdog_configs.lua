@@ -250,3 +250,15 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     vim.api.nvim_buf_set_option(0, "filetype", "gnuplot")
   end,
 })
+
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = {"*.norg", "*.tex"},
+  callback = function()
+    -- This forces the legacy syntax engine to stay awake for the injections
+    -- Put colorcolumn at 64 and 128
+    vim.opt.colorcolumn = "64,128"
+    vim.opt.wrap = false
+  end,
+})
+
