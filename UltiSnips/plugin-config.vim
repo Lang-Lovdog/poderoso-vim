@@ -69,13 +69,14 @@ let g:vimtex_view_enabled = 0
 let g:vimtex_compiler_latexmk = {
   \ 'executable': 'latexmk',
   \ 'options': [
+  \   '-pdf',
   \   '-shell-escape',
   \   '-file-line-error',
   \   '-synctex=1',
   \   '-interaction=nonstopmode',
-  \   '-bibtex',
   \ ],
   \}
+  "\   '-bibtex',
 
 let g:fzf_layout={'down': '30%'}
 
