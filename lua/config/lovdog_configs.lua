@@ -208,12 +208,31 @@ vim.api.nvim_create_user_command("SaveConfigs", function(args)
   _cd_="cd " .. vim_conf_path
   git_add_="git add ."
   git_commit_="git commit -m " .. commit_message
-  git_push_="git push"
-  print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
+  git_push_="git push origin master"
+  --print(_cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_)
   -- Execute with subshell for the cd only affects the subprocess
-  vim.cmd("!(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " && " .. git_push_ .. ")")
+  vim.cmd("!(" .. _cd_ .. " && " .. git_add_ .. " && " .. git_commit_ .. " || " .. git_push_ .. ")")
 
 end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("GetConfigs", function()
+  vim_conf_path = '"$HOME/.config/nvim/"'
+  vim_git__path = '"$HOME/.config/nvim/.git"'
+  _cd_="cd " .. vim_conf_path
+  if vim.fn.filereadable(vim_git__path) == 0 then
+    local clone = "git clone https://github.com/Lang-Lovdog/poderoso-vim"
+    local extract_files_from_git = "mv poderoso-vim/* . && rmdir poderoso-vim"
+    print("No .git folder found, cloning")
+    vim.cmd("!(" .. _cd_ .. " && " .. clone .. " && " .. extract_files_from_git .. ")")
+    return
+  end
+  git_pull_="git pull origin master"
+  --print(_cd_ .. " && " .. git_pull_)
+  -- Execute with subshell for the cd only affects the subprocess
+  vim.cmd("!(" .. _cd_ .. " && " .. git_pull_ .. ")")
+
+end, {})
+
 
 
 -- Add qtplt and wxplt as gnuplot filetypes

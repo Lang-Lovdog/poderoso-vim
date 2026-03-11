@@ -2,12 +2,13 @@
 if os.getenv("ZELLIJ") == "0" then
   require('liotree.config').setup({
     executers = {
-        ["Makefile"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- bash -c \"make    __select__  \" && zellij ac toggle-floating-panes   ",
-        ["%.plt$"       ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- bash -c \"gnuplot       __this__    ; echo END OF PROCESS  \" && zellij ac toggle-floating-panes   ",
-        ["%.qtplt$"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- bash -c \"gnuplot-qt -p __this__    ; echo END OF PROCESS  \" && zellij ac toggle-floating-panes   ",
-        ["%.wxplt$"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true    -- bash -c \"gnuplot-wx -p __this__    ; echo END OF PROCESS  \" && zellij ac toggle-floating-panes   ",
+        ["%.pdf"        ] = " sioyek __this__ &> /dev/null 2>&1 &",
+        ["Makefile"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"make    __select__  \" && zellij ac toggle-floating-panes   ",
+        ["%.plt$"       ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"gnuplot       __this__    ; echo END OF PROCESS ; read \" && zellij ac toggle-floating-panes   ",
+        ["%.qtplt$"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"gnuplot-qt -p __this__    ; echo END OF PROCESS ; read \" && zellij ac toggle-floating-panes   ",
+        ["%.wxplt$"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"gnuplot-wx -p __this__    ; echo END OF PROCESS ; read \" && zellij ac toggle-floating-panes   ",
         ["__this__dir__"] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash ",
-        ["%.sh$"        ] = "zellij ac new-pane -f --cwd __path__ -x \"60\\%\" -y \"80\\%\" --height \"20\\%\" --width \"40\\%\" --pinned true -c -- bash -c \" __this__ > __path__/log_$(basename __this__)_$(date +\\%d\\%m\\%Y\\%H\\%M\\%S).log  ; sleep 20 \"  && zellij ac toggle-floating-panes  ",
+        ["%.sh$"        ] = "zellij ac new-pane -f --cwd __path__ -x \"60\\%\" -y \"80\\%\" --height \"20\\%\" --width \"40\\%\" --pinned true -c -- bash -c \" __this__ ; echo END OF PROCESS ; read \"  && zellij ac toggle-floating-panes  ",
     },
     select_methods = {
         ["Makefile"] = "make_targets",
