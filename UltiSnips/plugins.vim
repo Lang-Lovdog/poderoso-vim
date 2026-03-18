@@ -106,5 +106,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ribelo/taskwarrior.nvim'
   Plug 'basola21/PDFview'
   Plug 'Lang-Lovdog/liotree.nvim'
+  Plug 'shortcuts/no-neck-pain.nvim'
+  Plug 'joshuadanpeterson/typewriter.nvim'
   """
 call plug#end()
