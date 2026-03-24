@@ -34,7 +34,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'benlubas/molten-nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'willothy/wezterm.nvim'
   " Overleaf
-  Plug 'dmadisetti/AirLatex.vim', {'do': ':UpdateRemotePlugins'}
+ " Plug 'dmadisetti/AirLatex.vim', {'do': ':UpdateRemotePlugins'}
+  Plug 'richwomanbtc/overleaf.nvim', { 'do': 'cd node && npm install' }
   """ EDITING
   Plug 'norcalli/nvim-colorizer.lua' 
   Plug 'HiPhish/rainbow-delimiters.nvim'
