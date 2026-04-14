@@ -109,5 +109,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Lang-Lovdog/liotree.nvim'
   Plug 'shortcuts/no-neck-pain.nvim'
   Plug 'joshuadanpeterson/typewriter.nvim'
+  Plug 'Pocco81/true-zen.nvim'
   """
 call plug#end()

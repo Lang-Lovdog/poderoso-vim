@@ -13,6 +13,13 @@ end
 , {}
 );
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "norg",
+  callback = function()
+    vim.keymap.set("i", ":---:", "—", {buffer=true})
+  end,
+})
+
 -- Define a function that creates an autocommand
 -- that'll run TexlabForward on CursorMove for *.tex files
 vim.cmd("let g:texforward_enabled=0")

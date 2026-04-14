@@ -3,6 +3,7 @@ if os.getenv("ZELLIJ") == "0" then
   require('liotree.config').setup({
     executers = {
         ["%.pdf"        ] = " sioyek __this__ &> /dev/null 2>&1 &",
+        ["%.eps"        ] = " zathura __this__ &> /dev/null 2>&1 &",
         ["Makefile"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"make    __select__  \" && zellij ac toggle-floating-panes   ",
         ["%.plt$"       ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"gnuplot          __this__    ; echo END OF PROCESS ; read \" && zellij ac toggle-floating-panes   ",
         ["%.qtplt$"     ] = "zellij ac new-pane -f --cwd __path__ -x \"80\\%\" -y \"00\\%\" --height \"20\\%\" --width \"20\\%\" --pinned true -c -- bash -c \"gnuplot-qt -p    __this__    ; echo END OF PROCESS ; read \" && zellij ac toggle-floating-panes   ",
